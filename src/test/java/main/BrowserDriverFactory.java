@@ -20,4 +20,10 @@ public class BrowserDriverFactory {
         }
         return driver;
     }
+
+    public static void closeBrowser() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 }
