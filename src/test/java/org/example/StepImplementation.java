@@ -3,6 +3,7 @@ package org.example;
 import com.thoughtworks.gauge.Step;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import locators.SacueDemoLocators;
+import main.BrowserDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,41 +11,31 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static locators.SacueDemoLocators.userNameField;
+import static BasePageObjects.PageObjects.click;
+import static BasePageObjects.PageObjects.typeText;
+import static locators.SacueDemoLocators.*;
 
 public class StepImplementation {
 
-    private static WebDriver driver;
+    public static WebDriver driver;
 
     //loctors
-    static int TIMEOUT_SECONDS = 10;
-    public static void click(By locator) {
-        WebElement element = waitForElementClickable(driver, locator);
-        element.click();
-    }
-    public static void typeText(WebDriver driver, By locator, String text) {
-        WebElement element = waitForElementClickable(driver, locator);
-        element.clear();
-        element.sendKeys(text);
-    }
 
-    private static WebElement waitForElementClickable(WebDriver driver, By locator) {
-        WebDriverWait wait = new WebDriverWait(driver, TIMEOUT_SECONDS);
-        return wait.until(ExpectedConditions.elementToBeClickable(locator));
-    }
 
 
     @Step("Open the website <url>")
     public void openSauceDemoWebsite(String url) {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        driver = BrowserDriverFactory.getDriver();
         driver.get(url);
     }
 
     @Step("Log into the page with user <username> and password <password>")
     public void loginToSauceDemo(String username, String password) {
         click(userNameField);
-        // Implementation to log in with the given username and password
+        typeText(userNameField,"standard_user");
+        click(passwordField);
+        typeText(passwordField,"secret_sauce");
+        click(loginButton);
     }
 
     @Step("Add the bike light to the cart")
