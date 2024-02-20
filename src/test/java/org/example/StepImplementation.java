@@ -2,6 +2,7 @@ package org.example;
 
 import com.thoughtworks.gauge.Step;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import locators.SacueDemoLocators;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,14 +10,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static locators.SacueDemoLocators.userNameField;
 
 public class StepImplementation {
 
     private static WebDriver driver;
 
-    private static final int TIMEOUT_SECONDS = 10;
-    public static void click(WebDriver driver, By locator) {
+    //loctors
+    static int TIMEOUT_SECONDS = 10;
+    public static void click(By locator) {
         WebElement element = waitForElementClickable(driver, locator);
         element.click();
     }
@@ -41,7 +43,7 @@ public class StepImplementation {
 
     @Step("Log into the page with user <username> and password <password>")
     public void loginToSauceDemo(String username, String password) {
-        click();
+        click(userNameField);
         // Implementation to log in with the given username and password
     }
 
