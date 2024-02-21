@@ -4,6 +4,8 @@ import base.BrowserDriverFactory;
 import org.testng.Assert;
 import static pages.BasePageObjects.*;
 import static locators.SauceDemoSiteLocators.*;
+import static pages.CheckoutPage.calculateItemPricesFromCheckoutPage;
+import static pages.CheckoutPage.verifyTaxRate;
 
 public class StepImplementation {
 
