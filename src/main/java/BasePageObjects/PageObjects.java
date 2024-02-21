@@ -1,11 +1,12 @@
 package BasePageObjects;
 import com.thoughtworks.gauge.datastore.ScenarioDataStore;
+import locators.SauceDemoSiteLocators;
 import main.BrowserDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+
 import java.util.List;
-import static locators.SauceDemoSiteLocators.itemPriceFromCheckoutPage;
 import static main.BrowserDriverFactory.getDriver;
 
 public class PageObjects {
@@ -50,7 +51,7 @@ public class PageObjects {
     }
 
     public static void calculateItemPricesFromCheckoutPage() {
-        List<WebElement> itemPrices = BrowserDriverFactory.getDriver().findElements(itemPriceFromCheckoutPage);
+        List<WebElement> itemPrices = BrowserDriverFactory.getDriver().findElements(SauceDemoSiteLocators.itemPriceFromCheckoutPage);
         double totalSum = 0;
         double taxRate = 0.08;
         for (WebElement itemPrice : itemPrices) {
