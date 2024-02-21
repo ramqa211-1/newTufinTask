@@ -1,8 +1,7 @@
 package locators;
-
 import org.openqa.selenium.By;
 
-public class SauceDemoLocators {
+public class SauceDemoSiteLocators {
 
     public static By userNameField = By.id("user-name");
     public static By passwordField = By.id("password");

@@ -3,7 +3,7 @@ import com.thoughtworks.gauge.Step;
 import main.BrowserDriverFactory;
 import org.testng.Assert;
 import static BasePageObjects.PageObjects.*;
-import static locators.SauceDemoLocators.*;
+import static locators.SauceDemoSiteLocators.*;
 
 public class StepImplementation {
 

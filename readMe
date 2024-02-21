@@ -1,0 +1,11 @@
+I built my project using the Gauge framework and Java. I created two spec files, one for the extrinsic SauceDemo task and the second for the API task.
+ I adhered to my code conventions and structured it with an OOP (Object-Oriented Programming) approach for readability and clarity.
+
+To run my tests, I enter the following command in the IDE terminal:
+mvn clean install -U
+
+
+The report was generated at this path:
+reports/html-report/index.html (you can open and view it in a browser)
+
+Feel free to contact me with any questions you have (:

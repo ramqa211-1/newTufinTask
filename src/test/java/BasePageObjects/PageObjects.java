@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import java.util.List;
-import static locators.SauceDemoLocators.itemPriceFromCheckoutPage;
+import static locators.SauceDemoSiteLocators.itemPriceFromCheckoutPage;
 import static main.BrowserDriverFactory.getDriver;
 
 public class PageObjects {
