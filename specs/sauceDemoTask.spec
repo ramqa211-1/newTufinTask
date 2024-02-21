@@ -1,4 +1,4 @@
-# shopping.spec
+# sauceDemoSiteTask.spec
 
 ## Login and Purchase Flow
 * Open the website "<url>"
@@ -7,8 +7,8 @@
 * Go to the shopping cart
 * Click the Checkout button
 * Fill in details with first name "<firstName>", last name "<lastName>", and zip code "<zipCode>"
-* Click the Continue button
-* Validate the total sum with 8% tax is correct
-* Click the Finish button
-* Validate the Success message is displayed
+* Click on the Continue button
+* Validate the total items sum with 8% tax is correct
+* Click on the Finish button
+* Check the Success message is displayed
 * Close the browser

@@ -1,17 +1,18 @@
 package BasePageObjects;
 import com.thoughtworks.gauge.datastore.ScenarioDataStore;
+import main.BrowserDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-
-
 import java.util.List;
-
 import static locators.SauceDemoLocators.itemPriceFromCheckoutPage;
 import static main.BrowserDriverFactory.getDriver;
-import static org.example.StepImplementation.driver;
 
 public class PageObjects {
+
+    public static void openUrl(String URL) {
+        getDriver().get(URL);
+    }
 
     protected static WebElement find(By locator) {
         try {
@@ -30,10 +31,10 @@ public class PageObjects {
         }
     }
 
-
-    public static void click(By locator)  {
+    public static void click(By locator) {
         find(locator).click();
     }
+
     public static void typeText(By locator, String text) {
         find(locator).sendKeys(text);
     }
@@ -49,7 +50,7 @@ public class PageObjects {
     }
 
     public static void calculateItemPricesFromCheckoutPage() {
-        List<WebElement> itemPrices = driver.findElements(itemPriceFromCheckoutPage);
+        List<WebElement> itemPrices = BrowserDriverFactory.getDriver().findElements(itemPriceFromCheckoutPage);
         double totalSum = 0;
         double taxRate = 0.08;
         for (WebElement itemPrice : itemPrices) {
@@ -59,7 +60,7 @@ public class PageObjects {
         }
         double tax = totalSum * taxRate;
         tax = Double.parseDouble(String.format("%.2f", tax));
-        System.out.println("the Tax is " + tax + "");
+        System.out.println("the Tax rate is " + tax + "");
         ScenarioDataStore.put("totalSum", totalSum);
         ScenarioDataStore.put("tax", tax);
     }
@@ -67,9 +68,9 @@ public class PageObjects {
     public static void verifyTaxRate() {
         double totalSum = (double) ScenarioDataStore.get("totalSum");
         double tax = (double) ScenarioDataStore.get("tax");
-        double expectedTax = totalSum * 0.08;
-        expectedTax = Double.parseDouble(String.format("%.2f", expectedTax));  // Format expectedTax to two decimal places
-        System.out.println("the Tax amount in this purchase is " + expectedTax + "");
-        Assert.assertEquals(tax, expectedTax, "Tax calculation is correct!");
+        double expectedTaxApplyOnTotalSumItems = totalSum * 0.08;
+        expectedTaxApplyOnTotalSumItems = Double.parseDouble(String.format("%.2f", expectedTaxApplyOnTotalSumItems));  // Format expectedTaxApplyOnTotalSumItems to two decimal places
+        System.out.println("the Tax amount in this purchase is " + expectedTaxApplyOnTotalSumItems + "");
+        Assert.assertEquals(tax, expectedTaxApplyOnTotalSumItems, "Tax calculation is correct!");
     }
 }
