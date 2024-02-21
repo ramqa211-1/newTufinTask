@@ -1,4 +1,4 @@
-package sauceDemoSiteSteps;
+package sauceDemoSiteStep;
 import com.thoughtworks.gauge.Step;
 import main.BrowserDriverFactory;
 import org.testng.Assert;
