@@ -1,15 +1,15 @@
-package BasePageObjects;
+package pages;
 import com.thoughtworks.gauge.datastore.ScenarioDataStore;
 import locators.SauceDemoSiteLocators;
-import main.BrowserDriverFactory;
+import base.BrowserDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import java.util.List;
-import static main.BrowserDriverFactory.getDriver;
+import static base.BrowserDriverFactory.getDriver;
 
-public class PageObjects {
+public class BasePageObjects {
 
     public static void openUrl(String URL) {
         getDriver().get(URL);

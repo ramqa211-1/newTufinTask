@@ -1,8 +1,8 @@
 package sauceDemoSiteStep;
 import com.thoughtworks.gauge.Step;
-import main.BrowserDriverFactory;
+import base.BrowserDriverFactory;
 import org.testng.Assert;
-import static BasePageObjects.PageObjects.*;
+import static pages.BasePageObjects.*;
 import static locators.SauceDemoSiteLocators.*;
 
 public class StepImplementation {
