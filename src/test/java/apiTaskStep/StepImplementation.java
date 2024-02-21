@@ -6,8 +6,8 @@ import org.testng.Assert;
 
 public class StepImplementation {
 
-    @Step("Check if Tobias Funke appears in any pages list")
-    public void CheckIfSpecificNameAppearsInPagesList() {
+    @Step("Check if <firstName> <lastName> appears in any pages list")
+    public void CheckIfSpecificNameAppearsInPagesList(String firstName, String lastName) {
         String apiUrl = "https://reqres.in/api/users";
         int totalPages = getTotalPages(apiUrl);
 
@@ -16,7 +16,7 @@ public class StepImplementation {
             Response response = RestAssured.get(apiUrl + "?page=" + page);
             if (response.getStatusCode() == 200) {
                 String responseBody = response.getBody().asString();
-                isTobiasFunkeNameAppears = responseBody.contains("tobias.funke");
+                isTobiasFunkeNameAppears = responseBody.contains(firstName+lastName);
                 System.out.println("response body is " + responseBody + "");
             }
             if (isTobiasFunkeNameAppears) {
