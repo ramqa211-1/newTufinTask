@@ -2,25 +2,26 @@ package sauceDemoSiteStep;
 import com.thoughtworks.gauge.Step;
 import base.BrowserDriverFactory;
 import org.testng.Assert;
+import pages.ConstantPage;
 import static pages.BasePageObjects.*;
 import static locators.SauceDemoSiteLocators.*;
 import static pages.CheckoutPage.calculateItemPricesFromCheckoutPage;
 import static pages.CheckoutPage.verifyTaxRate;
 
 public class StepImplementation {
+    ConstantPage constantPage = new ConstantPage();
 
     @Step("Open the website <url>")
     public void openSauceDemoWebsite(String url) {
-        String sauceDemoSite="https://www.saucedemo.com/";
-        openUrl(sauceDemoSite);
+        openUrl(url);
     }
 
-    @Step("Log into the page with user <username> and password <password>")
-    public void loginToSauceDemo(String username, String password) {
+    @Step("Log into the page with user and password")
+    public void loginToSauceDemo() {
         click(userNameField);
-        typeText(userNameField, "standard_user");
+        typeText(userNameField, constantPage.userNameField);
         click(passwordField);
-        typeText(passwordField, "secret_sauce");
+        typeText(passwordField, constantPage.passwordField);
         click(loginButton);
     }
 
@@ -43,11 +44,11 @@ public class StepImplementation {
     @Step("Fill in details with first name <name>, last name <address>, and zip code <zip>")
     public void fillInDetailsOnCheckOutPage(String name, String address, String zip) {
         click(firstNameField);
-        typeText(firstNameField, "a");
+        typeText(firstNameField, name);
         click(lastNameField);
-        typeText(lastNameField, "a");
+        typeText(lastNameField, address);
         click(postalCodeField);
-        typeText(postalCodeField, "111");
+        typeText(postalCodeField, zip);
     }
 
     @Step("Click on the Continue button")

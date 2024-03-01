@@ -16,7 +16,7 @@ public class StepImplementation {
             Response response = RestAssured.get(apiUrl + "?page=" + page);
             if (response.getStatusCode() == 200) {
                 String responseBody = response.getBody().asString();
-                isTobiasFunkeNameAppears = responseBody.contains(firstName+lastName);
+                isTobiasFunkeNameAppears = responseBody.contains(firstName) && responseBody.contains(lastName);
                 System.out.println("response body is " + responseBody + "");
             }
             if (isTobiasFunkeNameAppears) {

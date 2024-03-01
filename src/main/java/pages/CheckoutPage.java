@@ -6,7 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import java.util.List;
 
+import static pages.BasePageObjects.getText;
+
 public class CheckoutPage {
+    static SauceDemoSiteLocators sauceDemoSiteLocators = new SauceDemoSiteLocators();
 
     public static void calculateItemPricesFromCheckoutPage() {
         List<WebElement> itemPrices = BrowserDriverFactory.getDriver().findElements(SauceDemoSiteLocators.itemPriceFromCheckoutPage);
@@ -26,10 +29,12 @@ public class CheckoutPage {
 
     public static void verifyTaxRate() {
         double totalSum = (double) ScenarioDataStore.get("totalSum");
-        double tax = (double) ScenarioDataStore.get("tax");
         double expectedTaxApplyOnTotalSumItems = totalSum * 0.08;
+        String taxRateNumberFromCheckout = getText(sauceDemoSiteLocators.taxRatePriceFromCheckout);
+        // Replace the dollar sign and any other non-numeric characters
+        String taxRateNumberOnlyFromCheckout = taxRateNumberFromCheckout.replaceAll("[^\\d.]", "");
+        double actualTaxRateFromCheckout = Double.parseDouble(taxRateNumberOnlyFromCheckout);
         expectedTaxApplyOnTotalSumItems = Double.parseDouble(String.format("%.2f", expectedTaxApplyOnTotalSumItems));  // Format expectedTaxApplyOnTotalSumItems to two decimal places
-        System.out.println("the Tax amount in this purchase is " + expectedTaxApplyOnTotalSumItems + "");
-        Assert.assertEquals(tax, expectedTaxApplyOnTotalSumItems, "Tax calculation is correct!");
+        Assert.assertEquals(actualTaxRateFromCheckout, expectedTaxApplyOnTotalSumItems, "Tax calculation is correct!");
     }
 }
